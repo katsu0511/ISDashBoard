@@ -1,6 +1,6 @@
--- DB名：ISDashBoard
--- ユーザー名：root
--- パスワード：tkznemou19
+-- DB名：heroku_3dcf0a69766abfe
+-- ユーザー名：bc322342aafa60
+-- パスワード：64b38a81
 -- テーブル：USER, INFO, SCDL, PFMC, STNG
 
 
