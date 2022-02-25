@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title th:text="#{title}">IS DashBoard</title>
+	<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}">
+	<link rel="icon" th:href="@{/img/favicon.ico}">
+	<script type="text/javascript" th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js}"></script>
+</head>
+<body><div class="wrap">
+
+	<header th:fragment="header">
+		<div class="inner">
+			<div class="header-left">
+				<h1 th:text="#{title}">IS DashBoard</h1>
+			</div>
+			<th:block th:if="${session.user_id != null && session.password != null}">
+				<div class="header-right">
+					<input type="button" id="reload" class="logout" name="reload" th:value="#{reload}">
+					<form class="logout-form" th:action="@{/logout}" method="POST">
+						<input type="submit" class="logout" name="logout_btn" th:value="#{logout}">
+					</form>
+				</div>
+				<div id="drawers" class="drawers">
+					<img th:src="@{/img/hamburger.svg}" alt="hamburger">
+				</div>
+			</th:block>
+		</div>
+		<th:block th:if="${session.user_id != null && session.password != null}">
+			<div id="drawer-wrapper" class="drawer-wrapper">
+				<ul class="drawer-menus">
+					<li>
+						<span th:text="#{menu}">Menu</span>
+					</li>
+					<li>
+						<a th:href="@{/top}" class="drawer-menu" th:text="#{top}">Top</a>
+					</li>
+					<li>
+						<a th:href="@{/personal}" class="drawer-menu" th:text="#{personal_information}">Personal Information</a>
+					</li>
+					<li>
+						<a th:href="@{/setting}" class="drawer-menu" th:text="#{setting}">Setting</a>
+					</li>
+					<li>
+						<form class="logout-form" th:action="@{/logout}" method="POST">
+							<input type="submit" class="drawer-menu" name="logout_btn" th:value="#{logout}">
+						</form>
+					</li>
+				</ul>
+				<span class="drawer-close-btn">
+					<img th:src="@{/img/close.svg}" id="close-btn" class="close-btn" alt="close">
+				</span>
+			</div>
+		</th:block>
+	</header>
+	
+	<aside th:fragment="aside">
+		<div class="menus">
+			<ul>
+				<li th:text="#{menu}">Menu</li>
+				<li>
+					<a th:href="@{/top}" th:text="#{top}">Top</a>
+				</li>
+				<li>
+					<a th:href="@{/personal}" th:text="#{personal_information}">Personal Information</a>
+				</li>
+				<li>
+					<a th:href="@{/setting}" th:text="#{setting}">Setting</a>
+				</li>
+				<li>
+					<form class="logout-form" th:action="@{/logout}" method="POST">
+						<input type="submit" name="logout_btn" th:value="#{logout}">
+					</form>
+				</li>
+			</ul>
+		</div>
+	</aside>
+
+	<footer th:fragment="footer">
+		<div class="inner">
+			<small>(C)2022 B-Stage Co., Ltd.</small>
+			<small class="version">Ver. 1.00</small>
+		</div>
+	</footer>
+</div></body>
+</html>

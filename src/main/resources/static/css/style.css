@@ -1,0 +1,1281 @@
+@charset "UTF-8";
+/*********
+  common
+**********/
+*, *::before, *::after {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: #f0f0f0;
+	color: #333;
+	font-size: 16px;
+	font-family: "游ゴシック体", "Yu Gothic", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "MS Pゴシック", "MS PGothic", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, a, p, span, small, ul, li, div, section, main, aside, nav, header, footer, img, form, label, table, tbody, tfoot, thead, tr, th, td {
+	border: 0;
+	font: inherit;
+	font-size: 100%;
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline;
+}
+
+a {
+	color: inherit;
+	outline: none;
+	text-decoration: none;
+}
+
+img {
+	border: none;
+	height: auto;
+	max-width: 100%;
+	vertical-align: top;
+}
+
+ul, ol {
+	list-style: none;
+}
+
+form {
+	margin: 0;
+	padding: 0;
+}
+
+.wrap {
+	overflow: hidden;
+}
+
+.inner {
+	width: 1100px;
+	margin: 0 auto;
+}
+
+.button {
+	display: block;
+	background-color: #e8e8e8;
+	color: #333;
+	font-size: 14px;
+	font-weight: lighter;
+	width: 100px;
+	height: 40px;
+	border: 1px solid #d3d3d3;
+	border-radius: 0;
+	text-align: center;
+	margin-top: 12px;
+	outline: none;
+	appearance: none;
+	-webkit-appearance: none;
+	cursor: pointer;
+	transition: all 0.3s;
+}
+
+.button:hover {
+	opacity: 0.6;
+}
+
+.error {
+	display: none;
+	color: red;
+}
+
+@media screen and (max-width: 1179px) {
+	.inner {
+		width: 738px;
+		margin: 0 auto;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.inner {
+		width: calc(100% - 30px);
+		margin: 0 auto;
+	}
+}
+
+/*********
+  header
+**********/
+header {
+	width: 100%;
+	height: 60px;
+}
+
+.header-left {
+	float: left;
+}
+
+.header-left h1 {
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 60px;
+	margin: 0;
+}
+
+.header-right {
+	display: flex;
+	float: right;
+}
+
+.logout {
+	display: block;
+	background-color: white;
+	color: #333;
+	text-decoration: none;
+	width: 100px;
+	height: 40px;
+	border: 1px solid #d3d3d3;
+	margin: 10px 0 0 10px;
+	transition: all 0.3s;
+	cursor: pointer;
+}
+
+.logout:hover {
+	background-color: #d3d3d3;
+}
+
+.drawers {
+	display: none;
+}
+
+@media screen and (max-width: 767px) {
+	.header-left h1 {
+		font-size: 20px;
+	}
+	.header-right {
+		display: none;
+	}
+	.drawers {
+		display: block;
+		float: right;
+		width: 40px;
+		height: 40px;
+		margin-top: 10px;
+		cursor: pointer;
+		outline: none;
+	}
+	.drawers img {
+		width: 100%;
+	}
+}
+
+/*********
+  drawer
+**********/
+.drawer-wrapper {
+	display: none;
+	position: relative;
+	transition: all 0.5s;
+}
+
+.drawer-menus {
+	margin: 60px 20px 0;
+}
+
+.drawer-menus li {
+	display: block;
+	padding: 10px 0;
+}
+
+.drawer-menus span {
+	display: block;
+	background-color: #9e9e9e;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 20px;
+	padding: 5px 10px;
+}
+
+.drawer-menu {
+	font-size: 20px;
+	line-height: 20px;
+	transition: all 0.3s;
+}
+
+.drawer-menus input {
+	background: none;
+	font-family: "游ゴシック体", "Yu Gothic", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "MS Pゴシック", "MS PGothic", sans-serif;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+	outline: none;
+	appearance: none;
+}
+
+.drawer-menu:hover {
+	opacity: 0.6;
+}
+
+.drawer-close-btn {
+	position: absolute;
+	top: 10px;
+	right: 15px;
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+}
+
+.drawer-close-btn img {
+ 	width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+	.drawer-wrapper {
+		display: block;
+		position: fixed;
+		background-color: rgba(255, 255, 255, 0.9);
+		width: 100%;
+		height: 100%;
+		visibility: hidden;
+		opacity: 0;
+		z-index: 10;
+	}
+}
+
+/*********
+  footer
+**********/
+footer {
+	width: 100%;
+	height: 40px;
+}
+
+footer .inner {
+	position: relative;
+}
+
+footer small {
+	display: block;
+	text-align: center;
+	line-height: 40px;
+}
+
+footer small.version {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+@media screen and (max-width: 767px) {
+	footer {
+		height: 80px;
+	}
+	footer small.version {
+		position: relative;
+	}
+}
+
+/****************
+  login-wrapper
+*****************/
+.login-wrapper {
+	min-height: calc(100vh - 100px);
+}
+
+.login-items {
+	background-color: #fff;
+	border: 1px solid #d3d3d3;
+	box-shadow: 5px 5px 5px #b4b4b4;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+.login-items h2 {
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	margin: 10px;
+}
+
+.login-item {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 18px;
+	margin-bottom: 20px;
+}
+
+.login-label {
+	text-align: right;
+	width: 120px;
+	margin-right: 10px;
+}
+
+.login-info {
+	font-size: 18px;
+	width: 300px;
+	border: 1px solid #333;
+	border-radius: 3px;
+	padding: 10px;
+	outline: none;
+	appearance: none;
+}
+
+.error-message {
+	color: red;
+	font-size: 18px;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+@media screen and (max-width: 767px) {
+	.login-wrapper {
+		min-height: calc(100vh - 140px);
+	}
+	.login-item {
+		display: block;
+	}
+	.login-label {
+		display: block;
+		text-align: center;
+		width: 100%;
+		margin: 0 0 5px;
+	}
+	.login-info {
+		display: block;
+		width: 250px;
+		margin: 0 auto;
+	}
+	.login-input .button {
+		margin: 0 auto;
+	}
+}
+
+@media screen and (max-width: 320px) {
+	.login-info {
+		width: 100%;
+	}
+}
+
+/********
+  aside
+*********/
+aside {
+	width: 15%;
+}
+
+.menus {
+	border: 1px solid #d3d3d3;
+}
+
+aside ul {
+	padding: 0;
+	margin: 0;
+}
+
+aside a, aside input {
+	display: block;
+	background-color: #fff;
+	border-bottom: 1px solid #d3d3d3;
+	padding: 0 3px;
+	transition: all 0.3s;
+}
+
+aside input {
+	font-family: "游ゴシック体", "Yu Gothic", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "MS Pゴシック", "MS PGothic", sans-serif;
+	font-size: 16px;
+	width: 100%;
+	text-align: left;
+	border: none;
+	outline: none;
+	appearance: none;
+	cursor: pointer;
+}
+
+aside a:hover, aside input:hover {
+	background-color: #cee9fa;
+}
+
+aside li:last-child input {
+	border-bottom: none;
+}
+
+aside li:first-child {
+	background-color: #d3d3d3;
+	text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+	aside {
+		display: none;
+	}
+}
+
+/*******
+  main
+********/
+main {
+	padding: 20px 0;
+}
+
+main .inner {
+	display: flex;
+}
+
+main .top {
+	width: calc(85% - 10px);
+}
+
+main .display {
+	background-color: #fff;
+	border: 1px solid #d3d3d3;
+	box-shadow: 5px 5px 5px #b4b4b4;
+	border-radius: 5px;
+	padding: 5px;
+	margin-left: 10px;
+}
+
+@media screen and (max-width: 767px) {
+	main .top {
+		width: 100%;
+	}
+	main .display {
+		margin-left: 0;
+	}
+}
+
+/********
+  title
+*********/
+.title {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 26px;
+	margin-bottom: 2px;
+}
+
+.title h2 {
+	font-weight: bold;
+}
+
+.title button {
+	height: 26px;
+	line-height: 26px;
+	margin: 0 28px 0 0;
+}
+
+/********
+  table
+*********/
+
+.disp {
+	margin-bottom: 30px;
+}
+
+.disp .table {
+	border-top: 1px solid #d3d3d3;
+	width: calc(100% - 28px);
+}
+
+.display_tbody {
+	height: 108px;
+}
+
+.disp .thead {
+	background-color: #e8e8e8;
+	border-left: 1px solid #d3d3d3;
+	border-bottom: 1px solid #d3d3d3;
+	width: 100%;
+	height: 26px;
+}
+
+.disp .tbody {
+	width: 100%;
+	max-height: 108px;
+	overflow: scroll;
+}
+
+.disp .thead .tr {
+	display: flex;
+	width: 100%;
+}
+
+.disp .tbody .tr {
+	border-left: 1px solid #d3d3d3;
+	border-bottom: 1px solid #d3d3d3;
+	width: 100%;
+	transition: all 0.3s;
+}
+
+.disp .tbody .tr a {
+	display: flex;
+}
+
+.disp .tbody .tr:hover {
+	background-color: #cee9fa;
+}
+
+.disp .th, .disp .td {
+	display: block;
+	font-weight: bold;
+	height: 26px;
+	line-height: 26px;
+	border-right: 1px solid #d3d3d3;
+	overflow: hidden;
+	padding: 0 5px;
+}
+
+@media screen and (max-width: 767px) {
+	.disp .th, .disp .td {
+		text-align: center;
+	}
+}
+
+/*********
+  scroll
+**********/
+.display_tbody {
+	position: relative;
+}
+
+.scroll {
+	position: absolute;
+	top: -1px;
+	right: -29px;
+	border-left: 1px solid #d3d3d3;
+	border-right: 1px solid #d3d3d3;
+}
+
+.scroll .up, .scroll .down {
+	position: relative;
+	width: 28px;
+	height: 28px;
+	border-top: 1px solid #d3d3d3;
+	border-bottom: 1px solid #d3d3d3;
+	transition: all 0.3s;
+	cursor: pointer;
+}
+
+.scroll .up:hover, .scroll .down:hover {
+	opacity: 0.6;
+}
+
+.scroll .up:active, .scroll .down:active {
+	top: 1px;
+}
+
+.scroll .up img, .scroll .down img {
+	width: 100%;
+}
+
+.scrollbar {
+	width: 27px;
+	height: 53px;
+}
+
+/*********
+  inform
+**********/
+.inform .th:first-child, .inform .td:first-child {
+	color: red;
+	font-size: 14px;
+	width: 5%;
+	text-align: center;
+}
+
+.inform .th:nth-child(2), .inform .td:nth-child(2) {
+	width: 15%;
+}
+
+.inform .th:nth-child(3), .inform .td:nth-child(3) {
+	width: 10%;
+	text-align: center;
+}
+
+.inform .th:last-child, .inform .td:last-child {
+	width: 70%;
+}
+
+@media screen and (max-width: 767px) {
+	.inform .th:first-child, .inform .td:first-child {
+		display: none;
+	}
+	.inform .th:nth-child(2), .inform .td:nth-child(2) {
+		width: 130px;
+	}
+	.inform .th:nth-child(3), .inform .td:nth-child(3) {
+		display: none;
+	}
+	.inform .th:last-child, .inform .td:last-child {
+		width: calc(100% - 130px);
+	}
+}
+
+/***********
+  schedule
+************/
+.schedule .th:first-child, .schedule .td:first-child {
+	width: 20%;
+	text-align: center;
+}
+
+.schedule .th:nth-child(2), .schedule .td:nth-child(2) {
+	width: 15%;
+	text-align: center;
+}
+
+.schedule .th:last-child, .schedule .td:last-child {
+	width: 65%;
+}
+
+@media screen and (max-width: 767px) {
+	.schedule .th:first-child, .schedule .td:first-child {
+		width: 100px;
+	}
+	.schedule .th:nth-child(2), .schedule .td:nth-child(2) {
+		display: none;
+	}
+	.schedule .th:last-child, .schedule .td:last-child {
+		width: calc(100% - 100px);
+	}
+}
+
+/*******
+  task
+********/
+.task .th:first-child, .task .td:first-child {
+	width: 30%;
+}
+
+.task .th:nth-child(2), .task .td:nth-child(2) {
+	width: 55%;
+}
+
+.task .th:last-child, .task .td:last-child {
+	width: 15%;
+	text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+	.task .th:first-child, .task .td:first-child {
+		width: 70%;
+	}
+	.task .th:nth-child(2), .task .td:nth-child(2) {
+		display: none;
+	}
+	.task .th:last-child, .task .td:last-child {
+		width: 30%;
+	}
+}
+
+/***************
+  post_wrapper
+****************/
+.post_wrapper {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.8);
+	z-index: 10;
+	visibility: hidden;
+	opacity: 0;
+	transition: all 0.5s;
+}
+
+.post_wrap {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	background-color: #fff;
+	width: 738px;
+	height: auto;
+	border: 1px solid #d3d3d3;
+	box-shadow: 5px 5px 5px #b4b4b4;
+	margin: 0 auto;
+}
+
+.post_title {
+	background-color: #cfcfcf;
+	width: 100%;
+	height: 40px;
+	text-align: center;
+	line-height: 26px;
+	padding: 7px 0;
+}
+
+.post_content {
+	width: 100%;
+	height: auto;
+	padding: 10px 20px;
+}
+
+.post_wrapper .table {
+	height: 100%;
+}
+
+.post_wrapper .tr {
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 10px;
+}
+
+.post_wrapper .th {
+	width: 100px;
+	line-height: 26px;
+}
+
+.post_wrapper .td {
+	width: calc(100% - 100px);
+	height: 100%;
+	line-height: 26px;
+}
+
+.post_wrapper .datetime, .post_wrapper .cost {
+	height: 26px;
+	border: 1px solid #333;
+	border-radius: 2px;
+	padding: 0 5px;
+	outline: none;
+}
+
+.post_wrapper .user-name {
+	background-color: #e8e8e8;
+	width: 100px;
+	height: 26px;
+	border: 1px solid #333;
+	border-radius: 2px;
+	padding: 2px 5px;
+	outline: none;
+}
+
+.post_wrapper textarea {
+	width: 100%;
+	height: 232px;
+	padding: 5px;
+	outline: none;
+}
+
+.post_wrapper .buttons {
+	display: flex;
+	justify-content: flex-end;
+	margin: 0 20px 20px 0;
+}
+
+.post_wrapper .button {
+	height: 26px;
+	line-height: 26px;
+	margin: 0 0 0 10px;
+}
+
+@media screen and (max-width: 767px) {
+	.post_wrap {
+		width: calc(100% - 30px);
+		margin: 0 auto;
+	}
+	.post_content {
+		padding: 10px 5px;
+	}
+	.post_wrapper .th {
+		width: 100%;
+		text-align: center;
+	}
+	.post_wrapper .td {
+		width: 100%;
+	}
+	.post_wrapper .datetime, .post_wrapper .cost {
+		width: 100%;
+	}
+		.post_wrapper .user-name {
+		width: 100%;
+	}
+	.post_wrapper .buttons {
+		justify-content: center;
+		margin: 0 0 20px;
+	}
+	.post_wrapper .button:first-child, .save_button {
+		margin: 0!important;
+	}
+}
+
+/*****************
+  show_wrapper
+******************/
+.show_wrapper {
+	width: 100%;
+}
+
+.show_wrap {
+	background-color: #fff;
+	width: 100%;
+}
+
+.show_wrapper .title {
+	display: block;
+	background-color: #cfcfcf;
+	width: 100%;
+	height: 40px;
+	text-align: center;
+	line-height: 26px;
+	padding: 7px 0;
+}
+
+.show_wrapper .content {
+	padding: 10px 20px;
+}
+
+.show_wrapper .tr {
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 10px;
+}
+
+.show_wrapper .th {
+	width: 100px;
+	line-height: 26px;
+}
+
+.show_wrapper .td {
+	width: calc(100% - 100px);
+	line-height: 26px;
+}
+
+.show_wrapper p {
+	width: 100%;
+	height: 263px;
+	border: 1px solid #333;
+	border-radius: 2px;
+	overflow: scroll;
+	padding: 5px;
+}
+
+.show_wrapper .buttons {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	padding-bottom: 20px;
+	margin-right: 20px;
+}
+
+.show_wrapper .button {
+	height: 26px;
+	line-height: 26px;
+	margin: 0 0 0 10px;
+}
+
+@media screen and (max-width: 767px) {
+	.show_wrapper .content {
+		padding: 10px 5px;
+	}
+	.show_wrapper .th {
+		width: 100%;
+	}
+	.show_wrapper .td {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.show_wrapper .buttons {
+		margin: 0 5px 0;
+	}
+	.show_wrapper .button {
+		width: 100%;
+		margin: 0;
+	}
+	.show_wrapper form {
+		width: 100%;
+		margin: 10px 0;
+	}
+}
+
+/**************
+  task_show
+***************/
+.task_show {
+	width: 100%;
+}
+
+.task_show .display {
+	margin: 0;
+}
+
+#add_performance {
+	margin-right: 0;
+}
+
+.task_content .table {
+	border: 1px solid #d3d3d3;
+	margin-bottom: 20px;
+}
+
+.task_content .tr {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.task_content .th {
+	background-color: #e8e8e8;
+	width: 110px;
+	min-width: 110px;
+	line-height: 26px;
+	border-bottom: 1px solid #d3d3d3;
+	border-right: 1px solid #d3d3d3;
+	padding: 0 5px;
+}
+
+.task_content .th:last-child {
+	border-bottom: none;
+}
+
+.task_content .td {
+	width: calc(100% - 110px);
+	line-height: 26px;
+	border-bottom: 1px solid #d3d3d3;
+	padding: 0 5px;
+}
+
+.task_content .tr:last-child .th, .task_content .tr:last-child .td {
+	border-bottom: none;
+}
+
+.performance .tr {
+	border: 1px solid #d3d3d3;
+	margin-bottom: 5px;
+}
+
+.performance .th {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	background-color: #e8e8e8;
+}
+
+.performance .thc {
+	height: 26px;
+	line-height: 26px;
+	border-right: 1px solid #d3d3d3;
+	padding: 0 5px;
+}
+
+.performance .thc:first-child {
+	width: 160px;
+}
+
+.performance .thc:nth-child(2) {
+	width: 50px;
+	text-align: center;
+}
+
+.performance .thc:nth-child(3) {
+	width: 100px;
+	text-align: center;
+}
+
+.performance .thc:last-child {
+	width: calc(100% - 310px);
+	border-right: none;
+	text-align: right;
+}
+
+.performance form {
+	display: inline-block;
+}
+
+.performance span, .performance input {
+	display: inline-block;
+	background-color: transparent;
+	color: #3bc4fa;
+	font-family: "游ゴシック体", "Yu Gothic", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "MS Pゴシック", "MS PGothic", sans-serif;
+	font-size: 16px;
+	border: none;
+	height: 26px;
+	padding: 0;
+	margin: 0 5px;
+	outline: none;
+	appearance: none;
+	cursor: pointer;
+	transition: all 0.3s;
+}
+
+.performance span:hover, .performance input:hover {
+	opacity: 0.6;
+}
+
+.performance .td {
+	line-height: 26px;
+	padding: 0 5px;
+}
+
+.task_close .button {
+	margin-left: auto;
+}
+
+@media screen and (max-width: 767px) {
+	.task_content .th {
+		width: 100%;
+	}
+	.task_content .td {
+		width: 100%;
+	}
+	.performance .thc:first-child {
+		width: 50%;
+		border-bottom: 1px solid #d3d3d3;
+	}
+	.performance .thc:nth-child(2) {
+		width: 50%;
+		border-right: none;
+		border-bottom: 1px solid #d3d3d3;
+	}
+	.performance .thc:nth-child(3) {
+		width: 50%;
+		text-align: left;
+	}
+	.performance .thc:last-child {
+		width: 50%;
+		text-align: center;
+	}
+}
+
+/***********
+  setting
+************/
+.setting .content {
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.setting .table {
+	display: flex;
+	flex-wrap: wrap;
+	border: 1px solid #d3d3d3;
+}
+
+.setting .th {
+	background-color: #e8e8e8;
+	height: 38px;
+	line-height: 38px;
+	border-right: 1px solid #d3d3d3;
+	padding: 0 5px;
+}
+
+.setting .td {
+	height: 38px;
+	line-height: 38px;
+	padding: 0 5px;
+}
+
+.setting .button {
+	height: 26px;
+	margin: 0 0 0 10px;
+}
+
+@media screen and (max-width: 767px) {
+	.setting .content {
+		display: block;
+	}
+	.setting .table {
+		width: 100%;
+	}
+	.setting .button {
+		margin-left: 0;
+	}
+}
+
+/****************
+  personal_info
+*****************/
+.personal_info .contents {
+	padding-left: 40px;
+}
+
+.personal_info .table {
+	width: 70%;
+}
+
+.personal_info .th {
+	font-weight: bold;
+	width: 130px;
+	overflow: hidden;
+}
+
+.personal_info .td {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: calc(100% - 130px);
+}
+
+.personal_info .td input {
+	width: 300px;
+	height: 26px;
+	border: 1px solid #333;
+	padding: 5px;
+	outline: none;
+	appearance: none;
+}
+
+.personal_info span {
+	display: block;
+	width: 22px;
+}
+
+.personal_info span img {
+	padding-top: 8px;
+	cursor: pointer;
+	transition: all 0.3s;
+}
+
+.personal_info span img:hover {
+	opacity: 0.6;
+}
+
+.personal_info span.close {
+	display: none;
+}
+
+@media screen and (max-width: 767px) {
+	.personal_info .contents {
+		padding-left: 0;
+	}
+	.personal_info .table {
+		width: 100%;
+	}
+	.personal_info .th {
+		width: 100%;
+	}
+	.personal_info .td {
+		width: 100%;
+	}
+	.personal_info .td input {
+		width: calc(100% - 27px);
+	}
+	.personal_info .button {
+		margin: 10px 0 0;
+	}
+}
+
+/************************
+  password_form_wrapper
+*************************/
+#password_form_wrapper .tr {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 50px;
+}
+
+#password_form_wrapper .th {
+	width: 180px;
+	height: 26px;
+}
+
+#password_form_wrapper .td {
+	width: calc(100% - 180px);
+	height: 26px;
+}
+
+#password_form_wrapper .td input {
+	width: 100%;
+	height: 26px;
+	border: 1px solid #333;
+	padding: 5px;
+	outline: none;
+	appearance: none;
+}
+
+@media screen and (max-width: 767px) {
+	#password_form_wrapper .tr {
+		margin: 10px 0 20px;
+	}
+	#password_form_wrapper .th {
+		width: 100%;
+	}
+	#password_form_wrapper .td {
+		width: 100%;
+	}
+}
+
+/***********
+  settings
+************/
+.settings .contents {
+	margin-bottom: 200px;
+}
+
+.settings .content {
+	margin-left: 40px;
+}
+
+.settings .table {
+	width: 40%;
+}
+
+.settings .th {
+	width: 300px;
+}
+
+.settings .td {
+	width: calc(100% - 300px);
+	text-align: right;
+}
+
+@media screen and (max-width: 1179px) {
+	.settings .table {
+		width: 50%;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.settings .contents {
+		margin-bottom: 0;
+	}
+	.settings .content {
+		margin-left: 0;
+		margin-bottom: 30px;
+	}
+	.settings .table {
+		width: 100%;
+		margin: 0 0 10px;
+	}
+	.settings .th {
+		width: 100%;
+	}
+	.settings .td {
+		width: 100%;
+		text-align: left;
+	}
+}
+
+/******************
+  setting_table
+*******************/
+.setting_table .tr {
+	margin: 39px 0;
+}
+
+.setting_table .th {
+	width: 180px;
+}
+
+.setting_table .td {
+	width: calc(100% - 180px);
+}
+
+.setting_table select {
+	width: 100%;
+	height: 26px;
+	padding: 5px;
+	cursor: pointer;
+	outline: none;
+}
+
+@media screen and (max-width: 767px) {
+	.setting_table .th {
+		width: 100%;
+	}
+	.setting_table .td {
+		width: 100%;
+	}
+}

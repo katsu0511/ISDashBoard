@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="common/common :: head"></head>
+<body><div class="wrap">
+<header th:include="common/common :: header"></header>
+
+<main>
+	<div class="inner">
+		<aside th:include="common/common :: aside"></aside>
+		<section class="top">
+			<div class="display">
+				<div class="disp inform">
+					<div class="title">
+						<h2 th:text="#{inform.title}">Inform</h2>
+						<button id="add_inform" class="button" th:text="#{inform.add}">Add Inform</button>
+					</div>
+					<div class="inform_contents">
+						<div class="table">
+							<div class="thead">
+								<div class="tr">
+									<span class="th"></span>
+									<span class="th" th:text="#{inform.date}">Date</span>
+									<span class="th" th:text="#{inform.from}">From</span>
+									<span class="th" th:text="#{inform.outline}">Outline</span>
+								</div>
+							</div>
+							<div class="display_tbody">
+								<div id="tbody1" class="tbody">
+									<div class="tr" th:each="info:${infos}">
+										<a th:href="@{'/inform/' + ${info[INFOID]}}" target="_blank" rel="noopener noreferrer">
+											<span class="td"></span>
+											<span class="td" th:text="${#strings.substring(info.UDDTTM,0,10)}"></span>
+											<span class="td" th:text="${info[SENDER]}"></span>
+											<span class="td" th:text="${info[INFOCT]}"></span>
+										</a>
+									</div>
+								</div>
+								<div class="scroll">
+									<div id="up1" class="up">
+										<img src="img/up.svg" alt="up">
+									</div>
+									<div class="scrollbar"></div>
+									<div id="down1" class="down">
+										<img src="img/down.svg" alt="down">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="disp schedule">
+					<div class="title">
+						<h2 th:text="#{schedule.title}">Today's Schedule</h2>
+						<button id="add_schedule" class="button" th:text="#{schedule.add}">Add Schedule</button>
+					</div>
+					<div class="schedule_contents">
+						<div class="table">
+							<div class="thead">
+								<div class="tr">
+									<span class="th" th:text="#{schedule.time}">Time</span>
+									<span class="th" th:text="#{schedule.from}">From</span>
+									<span class="th" th:text="#{schedule.outline}">Outline</span>
+								</div>
+							</div>
+							<div class="display_tbody">
+								<div id="tbody2" class="tbody">
+									<div class="tr" th:each="scdl:${scdls}">
+										<a th:href="@{'/schedule/' + ${scdl[SCDLID]}}" target="_blank" rel="noopener noreferrer">
+											<span class="td" th:text="${#strings.substring(scdl.DATETM,11,17)} + ${#strings.substring(scdl.DATETM,28,33)}"></span>
+											<span class="td" th:text="${scdl[SENDER]}"></span>
+											<span class="td" th:text="${scdl[SCDLCT]}"></span>
+										</a>
+									</div>
+								</div>
+								<div class="scroll">
+									<div id="up2" class="up">
+										<img src="img/up.svg" alt="up">
+									</div>
+									<div class="scrollbar"></div>
+									<div id="down2" class="down">
+										<img src="img/down.svg" alt="down">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="disp task">
+					<div class="title">
+						<h2 th:text="#{task.title}">Task</h2>
+					</div>
+					<div class="task_contents">
+						<div class="table">
+							<div class="thead">
+								<div class="tr">
+									<span class="th" th:text="#{task.project}">Project</span>
+									<span class="th" th:text="#{task.item}">Item</span>
+									<span class="th" th:text="#{task.all}">All</span>
+								</div>
+							</div>
+							<div class="display_tbody">
+								<div id="tbody3" class="tbody">
+									<div class="tr" th:each="task:${tasks}">
+										<a th:href="@{'/task/' + ${task[TASKID]}}" target="_blank" rel="noopener noreferrer">
+											<span class="td" th:text="${task[PRJTNM]}"></span>
+											<span class="td" th:text="${task[TASKNM]}"></span>
+											<span class="td" th:text="${task[EXPRDT]}"></span>
+										</a>
+									</div>
+								</div>
+								<div class="scroll">
+									<div id="up3" class="up">
+										<img src="img/up.svg" alt="up">
+									</div>
+									<div class="scrollbar"></div>
+									<div id="down3" class="down">
+										<img src="img/down.svg" alt="down">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</main>
+
+<div id="add_inform_wrapper" class="post_wrapper">
+	<div class="post_wrap">
+		<div class="post_title" th:text="#{inform.add}">Add Inform</div>
+		<form class="post_contents" th:action="@{/add/inform}" method="POST">
+			<div class="post_content">
+				<div class="table">
+					<div class="tr">
+						<div class="th" th:text="#{inform.from}">From</div>
+						<div class="td">
+							<input type="text" class="user-name" name="user" readonly th:value="${user}">
+						</div>
+					</div>
+					<div class="tr">
+						<div class="th" th:text="#{inform.content}">Content</div>
+						<div class="td">
+							<textarea id="inform_content" name="inform" required></textarea>
+							<p id="inform_content_error" class="error" th:text="#{inform.emptyContent}">Please input the inform content.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="buttons">
+				<input type="submit" id="save_add_inform" class="button" th:value="#{save}">
+				<span id="close_add_inform" class="button" th:text="#{close}">Close</span>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div id="add_schedule_wrapper" class="post_wrapper">
+	<div class="post_wrap">
+		<div class="post_title" th:text="#{schedule.add}">Add Schedule</div>
+		<form class="post_contents" th:action="@{/add/schedule}" method="POST">
+			<div class="post_content">
+				<div class="table">
+					<div class="tr">
+						<div class="th" th:text="#{schedule.time}">Time</div>
+						<div class="td">
+							<input type="datetime-local" id="start_date" class="datetime" name="start_date" required>
+							-
+							<input type="datetime-local" id="end_date" class="datetime" name="end_date" required>
+							<p id="schedule_datetime_error" class="error" th:text="#{schedule.emptyTime}">Please input the schedule time.</p>
+						</div>
+					</div>
+					<div class="tr">
+						<div class="th" th:text="#{schedule.from}">From</div>
+						<div class="td">
+							<input type="text" class="user-name" name="user" readonly th:value="${user}">
+						</div>
+					</div>
+					<div class="tr">
+						<div class="th" th:text="#{schedule.content}">Content</div>
+						<div class="td">
+							<textarea id="schedule_content" name="schedule" required style="height: 236px;"></textarea>
+							<p id="schedule_content_error" class="error" th:text="#{schedule.emptyContent}">Please input the schedule content.</p>
+						</div>
+					</div>
+    			</div>
+			</div>
+			<div class="buttons">
+				<input type="submit" id="save_add_schedule" class="button" th:value="#{save}">
+				<span id="close_add_schedule" class="button" th:text="#{close}">Close</span>
+			</div>
+		</form>
+	</div>
+</div>
+
+<footer th:include="common/common :: footer"></footer>
+</div>
+<script type="text/javascript" th:src="@{/js/common.js}"></script>
+<script type="text/javascript" th:src="@{/js/top.js}"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="common/common :: head"></head>
+<body><div class="wrap">
+<header th:include="common/common :: header"></header>
+
+<section class="login-wrapper">
+	<div class="inner">
+		<div class="login-items">
+			<h2 th:text="#{login}">Login</h2>
+			<form class="login-form" th:action="@{/login}" method="POST">
+				<div class="login-item">
+					<label for="user_id" class="login-label" th:text="#{user_id}">User ID : </label>
+					<div class="login-input">
+						<input type="text" id="user_id" class="login-info" name="user_id" autocomplete="off">
+					</div>
+				</div>
+				<div class="login-item">
+					<label for="password" class="login-label" th:text="#{password}">Password : </label>
+					<div class="login-input">
+						<input type="password" id="password" class="login-info" name="password" autocomplete="off">
+					</div>
+				</div>
+				<p class="error-message" th:text="${msg}"></p>
+				<div class="login-item">
+					<div class="login-input">
+						<input type="submit" class="button" name="login_btn" th:value="#{login}">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
+
+<footer th:include="common/common :: footer"></footer>
+</div></body>
+</html>

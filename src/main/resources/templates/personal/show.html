@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="common/common :: head"></head>
+<body><div class="wrap">
+<header th:include="common/common :: header"></header>
+
+<main>
+	<div class="inner">
+		<aside th:include="common/common :: aside"></aside>
+		<section class="top">
+			<div class="display">
+				<div class="setting personal_info">
+					<div class="title">
+						<h2 th:text="#{personal.title}">Personal Information</h2>
+					</div>
+					<div class="contents">
+						<div class="content">
+							<div class="table">
+								<div class="th" th:text="#{personal.password}">Password</div>
+								<div class="td">
+									<input type="password" id="password" th:value="${user.PASSWD}" readonly>
+									<span id="open" class="open"><img src="img/eye.svg" alt="eye"></span>
+									<span id="close" class="close"><img src="img/close-eye.svg" alt="close-eye"></span>
+								</div>
+							</div>
+							<button id="change_password" class="button" th:text="#{edit}">Edit</button>
+						</div>
+					</div>
+					<div class="contents">
+						<div class="content">
+							<div class="table">
+								<div class="th" th:text="#{personal.email}">Email</div>
+								<div class="td">
+									<input type="text" th:value="${user.EMLADR}" readonly>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="contents">
+						<div class="content">
+							<div class="table">
+								<div class="th" th:text="#{personal.number}">Number</div>
+								<div class="td" th:text="${user.NUMBER}"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</main>
+
+<div id="password_form_wrapper" class="post_wrapper">
+	<div class="post_wrap">
+		<div class="post_title" th:text="#{password.edit}">Edit Password</div>
+		<form class="post_contents" th:action="@{'/edit/password'}" method="POST">
+			<div class="post_content">
+				<div class="table">
+					<div class="tr">
+						<div class="th" th:text="#{password.new}">New Password</div>
+						<div class="td">
+							<input type="password" id="password1" class="password" name="password1" maxlength="32" pattern="^(?=.*[a-z])(?=.*\d)[a-zA-Z0-9.?/-_]{8,32}$" oninput="value = value.replace(/[^0-9A-Za-z.?/-_]+/i,'');" required>
+							<p id="password1_error1" class="error" th:text="#{password.empty}">Please input the new password.</p>
+							<p id="password1_error2" class="error" th:text="#{password.unmatch}">Please input the password in the correct password format.</p>
+						</div>
+					</div>
+					<div class="tr">
+						<div class="th" th:text="#{password.confirm}">Password Confirmation</div>
+						<div class="td">
+							<input type="password" id="password2" class="password" name="password2" maxlength="32" pattern="^(?=.*[a-z])(?=.*\d)[a-zA-Z0-9.?/-_]{8,32}$" oninput="value = value.replace(/[^0-9A-Za-z.?/-_]+/i,'');" required>
+							<p id="password2_error1" class="error" th:text="#{password.confirmEmpty}">Please input the password confirmation.</p>
+							<p id="password2_error2" class="error" th:text="#{password.different}">Please input the same password.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="buttons">
+				<input type="hidden" name="user_id" th:value="${user_id}">
+				<input type="hidden" name="password" th:value="${password}">
+				<input type="submit" id="save_password" class="button save_button" th:value="#{save}">
+				<span id="close_password" class="button" th:text="#{close}">Close</span>
+			</div>
+		</form>
+	</div>
+</div>
+
+<footer th:include="common/common :: footer"></footer>
+</div>
+<script type="text/javascript" th:src="@{/js/common.js}"></script>
+<script type="text/javascript" th:src="@{/js/personal.js}"></script>
+</body>
+</html>

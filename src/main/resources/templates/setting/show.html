@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="common/common :: head"></head>
+<body><div class="wrap">
+<header th:include="common/common :: header"></header>
+
+<main>
+	<div class="inner">
+		<aside th:include="common/common :: aside"></aside>
+		<section class="top">
+			<div class="display">
+				<div class="setting settings">
+					<div class="title">
+						<h2 th:text="#{setting.title}">Environmental Settings</h2>
+					</div>
+					<div class="contents">
+						<div class="content">
+							<div class="table">
+								<div class="th" th:text="#{setting.informRow}">The number of Inform Rows</div>
+								<div class="td" th:text="${INFORO}"></div>
+							</div>
+							<button id="inform" class="button" th:text="#{edit}">Edit</button>
+						</div>
+						<div class="content">
+							<div class="table">
+								<div class="th" th:text="#{setting.scheduleRow}">The number of Schedule Rows</div>
+								<div class="td" th:text="${SCDLRO}"></div>
+							</div>
+							<button id="schedule" class="button" th:text="#{edit}">Edit</button>
+						</div>
+						<div class="content">
+							<div class="table">
+								<div class="th" th:text="#{setting.taskRow}">The number of Task Rows</div>
+								<div class="td" th:text="${TASKRO}"></div>
+							</div>
+							<button id="task" class="button" th:text="#{edit}">Edit</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</main>
+
+<div id="inform_setting_wrapper" class="post_wrapper">
+	<div class="post_wrap">
+		<div class="post_title" th:text="#{setting.informRowEdit}">Edit the number of Inform Rows</div>
+		<form class="post_contents" th:action="@{'/edit/inform_rows'}" method="POST">
+			<div class="post_content">
+				<div class="table setting_table">
+					<div class="tr">
+						<div class="th" th:text="#{setting.informRow}">The number of Inform Rows</div>
+						<div class="td">
+							<select name="info_rows">
+								<option value="3" th:selected="${INFORO == 3}">3</option>
+								<option value="4" th:selected="${INFORO == 4}">4</option>
+								<option value="5" th:selected="${INFORO == 5}">5</option>
+								<option value="6" th:selected="${INFORO == 6}">6</option>
+								<option value="7" th:selected="${INFORO == 7}">7</option>
+								<option value="8" th:selected="${INFORO == 8}">8</option>
+								<option value="9" th:selected="${INFORO == 9}">9</option>
+								<option value="10" th:selected="${INFORO == 10}">10</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="buttons">
+				<input type="hidden" name="user_nu" th:value="${user_nu}">
+				<input type="submit" id="save_inform_setting" class="button save_button" th:value="#{save}">
+				<span id="close_inform_setting" class="button" th:text="#{close}">Close</span>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div id="schedule_setting_wrapper" class="post_wrapper">
+	<div class="post_wrap">
+		<div class="post_title" th:text="#{setting.scheduleRowEdit}">Edit the number of Schedule Rows</div>
+		<form class="post_contents" th:action="@{'/edit/schedule_rows'}" method="POST">
+			<div class="post_content">
+				<div class="table setting_table">
+					<div class="tr">
+						<div class="th" th:text="#{setting.scheduleRow}">The number of Schedule Rows</div>
+						<div class="td">
+							<select name="scdl_rows">
+								<option value="3" th:selected="${SCDLRO == 3}">3</option>
+								<option value="4" th:selected="${SCDLRO == 4}">4</option>
+								<option value="5" th:selected="${SCDLRO == 5}">5</option>
+								<option value="6" th:selected="${SCDLRO == 6}">6</option>
+								<option value="7" th:selected="${SCDLRO == 7}">7</option>
+								<option value="8" th:selected="${SCDLRO == 8}">8</option>
+								<option value="9" th:selected="${SCDLRO == 9}">9</option>
+								<option value="10" th:selected="${SCDLRO == 10}">10</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="buttons">
+				<input type="hidden" name="user_nu" th:value="${user_nu}">
+				<input type="submit" id="save_schedule_setting" class="button save_button" th:value="#{save}">
+				<span id="close_schedule_setting" class="button" th:text="#{close}">Close</span>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div id="task_setting_wrapper" class="post_wrapper">
+	<div class="post_wrap">
+		<div class="post_title" th:text="#{setting.taskRowEdit}">Edit the number of Task Rows</div>
+		<form class="post_contents" th:action="@{'/edit/task_rows'}" method="POST">
+			<div class="post_content">
+				<div class="table setting_table">
+					<div class="tr">
+						<div class="th" th:text="#{setting.taskRow}">The number of Task Rows</div>
+						<div class="td">
+							<select name="task_rows">
+								<option value="3" th:selected="${TASKRO == 3}">3</option>
+								<option value="4" th:selected="${TASKRO == 4}">4</option>
+								<option value="5" th:selected="${TASKRO == 5}">5</option>
+								<option value="6" th:selected="${TASKRO == 6}">6</option>
+								<option value="7" th:selected="${TASKRO == 7}">7</option>
+								<option value="8" th:selected="${TASKRO == 8}">8</option>
+								<option value="9" th:selected="${TASKRO == 9}">9</option>
+								<option value="10" th:selected="${TASKRO == 10}">10</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="buttons">
+				<input type="hidden" name="user_nu" th:value="${user_nu}">
+				<input type="submit" id="save_task_setting" class="button save_button" th:value="#{save}">
+				<span id="close_task_setting" class="button" th:text="#{close}">Close</span>
+			</div>
+		</form>
+	</div>
+</div>
+
+<footer th:include="common/common :: footer"></footer>
+</div>
+<script type="text/javascript" th:src="@{/js/common.js}"></script>
+<script type="text/javascript" th:src="@{/js/setting.js}"></script>
+</body>
+</html>

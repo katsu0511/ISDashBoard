@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="common/common :: head"></head>
+<body><div class="wrap">
+<header th:include="common/common :: header"></header>
+
+<main>
+	<div class="inner">
+		<section class="task_show">
+			<div class="display">
+				<div class="task_details">
+					<div class="title">
+						<h2 th:text="#{task.detailTitle}">Task Detail</h2>
+						<button id="add_performance" class="button" th:text="#{performance.add}">Add Performance</button>
+					</div>
+					<div class="task_content">
+						<div class="table">
+							<div class="tr">
+								<div class="th" th:text="#{task.project}">Project</div>
+								<div class="td" th:text="${task.PRJTNM}"></div>
+							</div>
+							<div class="tr">
+								<div class="th" th:text="#{task.item}">Item</div>
+								<div class="td" th:text="${task.TASKNM}"></div>
+							</div>
+							<div class="tr">
+								<div class="th" th:text="#{task.expire}">Expire Date</div>
+								<div class="td" th:text="${task.EXPRDT}"></div>
+							</div>
+							<div class="tr">
+								<div class="th" th:text="#{task.person}">Charge Person</div>
+								<div class="td" th:text="${task.CHRGPS}"></div>
+							</div>
+							<div class="tr">
+								<div class="th" th:text="#{task.costs}">Production Costs</div>
+								<div class="td" th:text="${task.PRCOST}"></div>
+							</div>
+							<div class="tr">
+								<div class="th" th:text="#{task.content}">Task Content</div>
+								<div class="td" th:text="${task.TASKCT}"></div>
+							</div>
+						</div>
+					</div>
+					<div class="performance">
+						<div class="title">
+							<h2 th:text="#{performance.title}">Performance</h2>
+						</div>
+						<div class="performance_contents">
+							<div class="tr" th:each="pfmc:${pfmcs}">
+								<div class="th">
+									<div class="thc date" th:text="${pfmc[DATETM]}"></div>
+									<div class="thc cost" th:text="${pfmc[PRDTCT]}"></div>
+									<div class="thc user" th:text="${pfmc[SENDER]}"></div>
+									<div class="thc">
+										<span class="edit_performance" th:text="#{edit}">Edit</span>
+										<form th:action="@{/delete/performance}" method="POST">
+											<input type="hidden" name="task_id" th:value="${task.TASKID}">
+											<input type="hidden" class="pfmc_id" name="pfmc_id" th:value="${pfmc.PFMCID}">
+											<input type="hidden" name="user" th:value="${pfmc[SENDER]}">
+											<input type="submit" class="delete_performance" th:value="#{delete}">
+										</form>
+									</div>
+								</div>
+								<div class="td" th:text="${pfmc[PFMCCT]}"></div>
+							</div>
+						</div>
+						<div class="task_close">
+							<button id="close_show_wrapper" class="button" th:text="#{close}">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</main>
+
+<div id="add_performance_wrapper" class="post_wrapper">
+	<div class="post_wrap">
+		<div class="post_title">実績</div>
+		<form class="post_contents" th:action="@{'/add/performance'}" method="POST">
+			<div class="post_content">
+				<div class="table">
+					<div class="tr">
+						<div class="th">日時</div>
+						<div class="td">
+							<input type="date" id="date1" class="datetime" name="date" required>
+							<p id="date1_error" class="error" th:text="#{performance.emptyDate}">Please input the date.</p>
+						</div>
+					</div>
+					<div class="tr">
+						<div class="th">工数(時間）</div>
+						<div class="td">
+							<input type="text" id="cost1" class="cost" name="cost" required>
+							<p id="cost1_error" class="error" th:text="#{performance.emptyCost}">Please input the production costs.</p>
+						</div>
+					</div>
+					<div class="tr">
+						<div class="th">発信者</div>
+						<input type="text" class="user-name" name="user" readonly th:value="${user}">
+					</div>
+					<div class="tr">
+						<div class="th">実績内容</div>
+						<div class="td">
+							<textarea id="performance_content1" name="performance" style="height:200px;" required></textarea>
+							<p id="performance_content1_error" class="error" th:text="#{performance.emptyContent}">Please input the performance content.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="buttons">
+				<input type="hidden" name="task_id" th:value="${task.TASKID}">
+				<input type="submit" id="save_add_performance" class="button save_button" th:value="#{save}">
+				<span id="close_add_performance" class="button" th:text="#{close}">Close</span>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div id="edit_performance_wrapper" class="post_wrapper">
+	<div class="post_wrap">
+		<div class="post_title">実績</div>
+		<form class="post_contents" th:action="@{'/edit/performance'}" method="POST">
+			<div class="post_content">
+				<div class="table">
+					<div class="tr">
+						<div class="th">日時</div>
+						<div class="td">
+							<input type="date" id="date2" class="datetime" name="date" required>
+							<p id="date2_error" class="error" th:text="#{performance.emptyDate}">Please input the date.</p>
+						</div>
+					</div>
+					<div class="tr">
+						<div class="th">工数(時間）</div>
+						<div class="td">
+							<input type="text" id="cost2" class="cost" name="cost" required>
+							<p id="cost2_error" class="error" th:text="#{performance.emptyCost}">Please input the production costs.</p>
+						</div>
+					</div>
+					<div class="tr">
+						<div class="th">発信者</div>
+						<input type="text" id="user2" class="user-name" name="user" readonly th:value="${user}">
+					</div>
+					<div class="tr">
+						<div class="th">実績内容</div>
+						<div class="td">
+							<textarea id="performance_content2" name="performance" style="height:200px;" required></textarea>
+							<p id="performance_content2_error" class="error" th:text="#{performance.emptyContent}">Please input the performance content.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="buttons">
+				<input type="hidden" name="task_id" th:value="${task.TASKID}">
+				<input type="hidden" id="pfmc_id" name="pfmc_id">
+				<input type="submit" id="save_edit_performance" class="button save_button" th:value="#{edit}">
+				<span id="close_edit_performance" class="button" th:text="#{close}">Close</span>
+			</div>
+		</form>
+	</div>
+</div>
+
+<footer th:include="common/common :: footer"></footer>
+</div>
+<script type="text/javascript" th:src="@{/js/common.js}"></script>
+<script type="text/javascript" th:src="@{/js/show_task.js}"></script>
+<script th:inline="javascript">
+$(function() {
+	var editPerformance = $('.edit_performance');
+	const editPerformanceWrapper = $('#edit_performance_wrapper');
+	editPerformance.click(function() {
+		const pfmcId = $(this).parent().find('.pfmc_id').val();
+		const date = $(this).parent().parent().find('.date').text();
+		const cost = $(this).parent().parent().find('.cost').text();
+		const user = $(this).parent().parent().find('.user').text();
+		const content = $(this).parent().parent().parent().find('.td').text();
+		$('#pfmc_id').val(pfmcId);
+		$('#date2').val(date);
+		$('#cost2').val(cost);
+		$('#user2').val(user);
+		$('#performance_content2').val(content);
+		editPerformanceWrapper.css('visibility','visible');
+		editPerformanceWrapper.css('opacity',1);
+	});
+	
+	const deletePerformance = $('.delete_performance');
+	deletePerformance.click(function() {
+		var message = /*[[#{confirm}]]*/ 'Are you sure to delete?';
+		if (!confirm(message)) {
+			return false;
+		}
+	});
+});
+</script>
+</body>
+</html>

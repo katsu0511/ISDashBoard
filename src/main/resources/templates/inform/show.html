@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="common/common :: head"></head>
+<body><div class="wrap">
+<header th:include="common/common :: header"></header>
+
+<main>
+	<div class="inner">
+		<section id="show_wrapper" class="show_wrapper">
+			<div class="show_wrap">
+				<div class="title" th:text="#{inform.detail}">Inform Detail</div>
+				<div class="contents">
+					<div class="content">
+						<div class="table">
+							<div class="tr">
+								<div class="th" th:text="#{inform.date}">Date</div>
+								<div class="td" th:text="${#strings.substring(info.UDDTTM,0,10)}"></div>
+							</div>
+							<div class="tr">
+								<div class="th" th:text="#{inform.from}">From</div>
+								<div class="td" th:text="${info.SENDER}"></div>
+							</div>
+							<div class="tr">
+								<div class="th" th:text="#{inform.content}">Content</div>
+								<div class="td">
+									<p th:text="${info.INFOCT}"></p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="buttons">
+						<th:block th:if="${session.user_id.equals(info.SENDER)}">
+							<button id="edit_inform" class="button" th:text="#{edit}">Edit</button>
+							<form th:action="@{/delete/inform}" method="POST">
+								<input type="hidden" name="id" th:value="${info.INFOID}">
+								<input type="hidden" name="user" th:value="${info.SENDER}">
+								<input type="submit" id="delete_inform" class="button" th:value="#{delete}">
+							</form>
+						</th:block>
+						<button id="close_show_wrapper" class="button" th:text="#{close}">Close</button>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</main>
+
+<div id="edit_inform_wrapper" class="post_wrapper">
+	<div class="post_wrap">
+		<div class="post_title" th:text="#{inform.edit}">Edit Inform</div>
+		<form class="post_contents" th:action="@{'/edit/inform'}" method="POST">
+			<div class="post_content">
+				<div class="table">
+					<div class="tr">
+						<div class="th" th:text="#{inform.from}">From</div>
+						<div class="td">
+							<input type="hidden" name="id" th:value="${info.INFOID}">
+							<input type="text" class="user-name" name="user" readonly th:value="${info.SENDER}">
+						</div>
+					</div>
+					<div class="tr">
+						<div class="th" th:text="#{inform.content}">Content</div>
+						<div class="td">
+							<textarea id="inform_content" name="inform" th:text="${info.INFOCT}" required></textarea>
+							<p id="inform_content_error" class="error" th:text="#{inform.emptyContent}">Please input the inform content.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="buttons">
+				<input type="submit" id="save_edit_inform" class="button" th:value="#{save}">
+				<span id="close_edit_inform" class="button" th:text="#{close}">Close</span>
+			</div>
+		</form>
+	</div>
+</div>
+
+<footer th:include="common/common :: footer"></footer>
+</div>
+<script type="text/javascript" th:src="@{/js/common.js}"></script>
+<script type="text/javascript" th:src="@{/js/show_inform.js}"></script>
+</body>
+</html>
