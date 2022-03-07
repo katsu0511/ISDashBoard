@@ -64,7 +64,7 @@ form {
 	background-color: #e8e8e8;
 	color: #333;
 	font-size: 14px;
-	font-weight: lighter;
+	font-weight: normal;
 	width: 100px;
 	height: 40px;
 	border: 1px solid #d3d3d3;
@@ -196,7 +196,9 @@ header {
 }
 
 .drawer-menu {
+	color: #333;
 	font-size: 20px;
+	font-weight: normal;
 	line-height: 20px;
 	transition: all 0.3s;
 }
